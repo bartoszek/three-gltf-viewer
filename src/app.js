@@ -47,9 +47,34 @@ class App {
 			headerEl.style.display = 'none';
 		}
 
+		// Automatically load model from server
+		this.options.modelname = 'GROM_emblem.glb';
+		this.loadFromServer();
+
 		if (options.model) {
 			this.view(options.model, '', new Map());
 		}
+	}
+
+	/**
+	 * Load model from /models/ directory using filename from URL hash (or default)
+	 */
+	loadFromServer() {
+		const modelName = this.options.modelname;
+		console.log(modelName);
+
+		if (!modelName) {
+			this.onError(new Error('No model specified. Add #model=filename.glb to URL'));
+			return;
+		}
+
+		// Build path — adjust prefix if your models are in different folder
+		const modelPath = `/src/models/${modelName}`;
+		const rootPath = modelPath.replace(/[^/]+$/, ''); // folder part
+
+		this.showSpinner();
+
+		this.view(modelPath, rootPath, new Map());
 	}
 
 	/**
