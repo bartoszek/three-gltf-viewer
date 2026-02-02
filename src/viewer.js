@@ -65,24 +65,24 @@ export class Viewer {
 		this.state = {
 			environment:
 				options.preset === Preset.ASSET_GENERATOR
-					? environments.find((e) => e.id === 'footprint-court').name
-					: environments[1].name,
-			background: false,
+					? environments.find((e) => e.id === 'venice-sunset').name
+					: environments[2].name,
+			background: true,
 			playbackSpeed: 1.0,
 			actionStates: {},
 			camera: DEFAULT_CAMERA,
 			wireframe: false,
 			skeleton: false,
 			grid: false,
-			autoRotate: false,
+			autoRotate: true,
 
 			// Lights
 			punctualLights: true,
-			exposure: 0.0,
-			toneMapping: LinearToneMapping,
+			exposure: -1,
+			toneMapping: ACESFilmicToneMapping,
 			ambientIntensity: 0.3,
 			ambientColor: '#FFFFFF',
-			directIntensity: 0.8 * Math.PI, // TODO(#116)
+			directIntensity: 0.1, // TODO(#116)
 			directColor: '#FFFFFF',
 			bgColor: '#191919',
 
